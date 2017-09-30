@@ -1,0 +1,27 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
+
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+repositories {
+    mavenCentral()
+}
+
+jar {
+    baseName = 'shiro-freemarker-tags'
+    version = '0.1-SNAPSHOT'
+}
+
+dependencies {
+    // 编译需要jar
+    compile 'org.apache.shiro:shiro-all:1.3.2'
+    compile 'org.freemarker:freemarker:2.3.20'
+}
+
