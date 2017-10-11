@@ -29,8 +29,11 @@ public abstract class PermissionTag extends SecureTag {
         String p = getName(params);
 
         boolean show = showTagBody(p);
-        if (body != null) {
-            body.render(new ShiroInfoFilterWriter(env.getOut(), p, show));
+        String prefix = "<!-- shiro(" + show + "):" + p + " -->";
+        char[] prefixChars = prefix.toCharArray();
+        env.getOut().write(prefixChars);
+        if(show){
+            renderBody(env, body);
         }
     }
 
