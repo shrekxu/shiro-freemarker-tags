@@ -18,8 +18,11 @@ public abstract class RoleTag extends SecureTag {
     public void render(Environment env, Map params, TemplateDirectiveBody body) throws IOException, TemplateException {
         boolean show = showTagBody(getName(params));
         String p = getName(params);
-        if (body != null) {
-            body.render(new ShiroInfoFilterWriter(env.getOut(), p, show));
+        String prefix = "<!-- shiro(" + show + "):" + p + " -->";
+        char[] prefixChars = prefix.toCharArray();
+        env.getOut().write(prefixChars);
+        if (show) {
+            renderBody(env, body);
         }
     }
 
